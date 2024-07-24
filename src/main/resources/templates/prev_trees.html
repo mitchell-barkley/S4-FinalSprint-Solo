@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previous Trees</title>
+</head>
+<body>
+<h1>Previous Trees</h1>
+<ul>
+    <li th:each="tree : ${trees}">
+        <p>Input Numbers: <span th:text="${tree.inputNumbers}"></span></p>
+        <pre th:text="${tree.treeJson}"></pre>
+    </li>
+</ul>
+</body>
+</html>
