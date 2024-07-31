@@ -33,6 +33,10 @@ public class BinarySearchTree {
         return root;
     }
 
+    public void setRoot(Node root) {
+        this.root = root;
+    }
+
     public void balance() {
         List<Integer> values = new ArrayList<>();
         inOrderTraversal(root, values);
@@ -73,5 +77,11 @@ public class BinarySearchTree {
         }
 
         return "{ \"value\": " + node.getValue() + ", \"left\": " + toJson(node.getLeft()) + ", \"right\": " + toJson(node.getRight()) + " }";
+    }
+
+    // toString
+    @Override
+    public String toString() {
+        return "BinarySearchTree{" + "root=" + root + '}';
     }
 }

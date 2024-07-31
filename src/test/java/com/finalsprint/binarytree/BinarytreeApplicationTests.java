@@ -58,14 +58,14 @@ class BinarytreeApplicationTests {
 	@Test
 	void testRepository() {
 		BinaryEntity entity = new BinaryEntity();
-		entity.setInputNumbers("1,2,3");
-		entity.setTreeJson("{\"value\": 2, \"left\": {\"value\": 1, \"left\": null, \"right\": null}, \"right\": {\"value\": 3, \"left\": null, \"right\": null}}");
+		entity.setInputNumbers("5,3,7,1,4,6,8");
+		entity.setTreeJson("{\"value\":5,\"left\":{\"value\":3,\"left\":{\"value\":1,\"left\":null,\"right\":null},\"right\":{\"value\":4,\"left\":null,\"right\":null}},\"right\":{\"value\":7,\"left\":{\"value\":6,\"left\":null,\"right\":null},\"right\":{\"value\":8,\"left\":null,\"right\":null}}}");
 		Repository.save(entity);
 
 		Optional<BinaryEntity> optionalEntity = Repository.findById(entity.getId());
 		assertThat(optionalEntity.isPresent()).isTrue();
 		BinaryEntity foundEntity = optionalEntity.get();
-		assertThat(foundEntity.getInputNumbers()).isEqualTo("1,2,3");
-		assertThat(foundEntity.getTreeJson()).isEqualTo("{\"value\": 2, \"left\": {\"value\": 1, \"left\": null, \"right\": null}, \"right\": {\"value\": 3, \"left\": null, \"right\": null}}");
+		assertThat(foundEntity.getInputNumbers()).isEqualTo("5,3,7,1,4,6,8");
+		assertThat(foundEntity.getTreeJson()).isEqualTo("{\"value\":5,\"left\":{\"value\":3,\"left\":{\"value\":1,\"left\":null,\"right\":null},\"right\":{\"value\":4,\"left\":null,\"right\":null}},\"right\":{\"value\":7,\"left\":{\"value\":6,\"left\":null,\"right\":null},\"right\":{\"value\":8,\"left\":null,\"right\":null}}}");
 	}
 }

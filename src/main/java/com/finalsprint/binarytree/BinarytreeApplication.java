@@ -10,8 +10,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @ComponentScan(basePackages = {"com.finalsprint.binarytree.controller", "com.finalsprint.binarytree.model"})
 @EnableJpaRepositories("com.finalsprint.binarytree.Repository")
 @EntityScan("com.finalsprint.binarytree.model")
-public class BinarytreeApplication {
 
+public class BinarytreeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BinarytreeApplication.class, args);
 	}

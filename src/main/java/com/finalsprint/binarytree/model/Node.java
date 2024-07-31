@@ -35,4 +35,10 @@ public class Node {
     public void setRight(Node right) {
         this.right = right;
     }
+
+    // toString
+    @Override
+    public String toString() {
+        return STR."Node{value=\{value}, left=\{left}, right=\{right}\{'}'}";
+    }
 }

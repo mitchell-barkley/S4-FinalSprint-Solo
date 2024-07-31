@@ -21,7 +21,7 @@ public class BinaryController {
 
     @GetMapping("/")
     public String home() {
-        return "redirect:/enter_numbers";
+        return "home.html";
     }
 
     @GetMapping("/enter_numbers")
@@ -51,5 +51,58 @@ public class BinaryController {
         List<BinaryEntity> trees = Repository.findAll();
         model.addAttribute("trees", trees);
         return "previous_trees.html";
+    }
+
+    @GetMapping("/tree")
+    public String showTree(@RequestParam("id") Long id, Model model) {
+        BinaryEntity entity = Repository.findById(id).get();
+        model.addAttribute("treeJson", entity.getTreeJson());
+        return "result.html";
+    }
+
+    @GetMapping("/delete")
+    public String deleteTree(@RequestParam("id") Long id) {
+        Repository.deleteById(id);
+        return "redirect:/previous_trees";
+    }
+
+    @GetMapping("/update")
+    public String updateTree(@RequestParam("id") Long id, Model model) {
+        BinaryEntity entity = Repository.findById(id).get();
+        model.addAttribute("id", id);
+        model.addAttribute("inputNumbers", entity.getInputNumbers());
+        return "update.html";
+    }
+
+    @PostMapping("/update")
+    public String updateTree(@RequestParam("id") Long id, @RequestParam("number") String numbers) {
+        String[] numberArray = numbers.split(",");
+        BinarySearchTree tree = new BinarySearchTree();
+        for (String number : numberArray) {
+            tree.insert(Integer.parseInt(number));
+        }
+        tree.balance();
+        String treeJson = tree.toJson();
+        BinaryEntity entity = new BinaryEntity();
+        entity.setId(id);
+        entity.setInputNumbers(numbers);
+        entity.setTreeJson(treeJson);
+        Repository.save(entity);
+        return "redirect:/previous_trees";
+    }
+
+    @GetMapping("/search")
+    public String searchTree() {
+        return "search.html";
+    }
+
+    @PostMapping("/search")
+    public String searchTree(@RequestParam("id") Long id) {
+        return "redirect:/tree?id=" + id;
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about.html";
     }
 }

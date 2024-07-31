@@ -37,4 +37,10 @@ public class BinaryEntity {
     public void setTreeJson(String treeJson) {
         this.treeJson = treeJson;
     }
+
+    // toString
+    @Override
+    public String toString() {
+        return STR."BinaryEntity{id=\{id}, inputNumbers='\{inputNumbers}\{'\''}, treeJson='\{treeJson}\{'\''}\{'}'}";
+    }
 }
