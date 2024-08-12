@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.finalsprint.binarytree.controller", "com.finalsprint.binarytree.model"})
+@ComponentScan(basePackages = {"com.finalsprint.binarytree.controller", "com.finalsprint.binarytree.model", "com.finalsprint.binarytree.services", "com.finalsprint.binarytree.repository"})
 @EnableJpaRepositories("com.finalsprint.binarytree.Repository")
 @EntityScan("com.finalsprint.binarytree.model")
 

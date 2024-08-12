@@ -10,6 +10,10 @@ public class BinarySearchTree {
         this.root = null;
     }
 
+    public static BinarySearchTree fromJson(String treeJson) {
+        return null;
+    }
+
     public void insert(int value) {
         root = insertRec(root, value);
     }

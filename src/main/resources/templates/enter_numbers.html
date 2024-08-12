@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +7,13 @@
 </head>
 <body>
 <h1>Enter Numbers to Create Binary Search Tree</h1>
-<form action="/process_numbers" method="post">
-    <label for="numbers">Numbers (comma separated):</label>
-    <input type="text" id="numbers" name="numbers">
-    <button type="submit">Submit</button>
+<form action="/process" method="post">
+    <label for="numbers">Enter numbers separated by commas:</label><br>
+    <input type="text" id="numbers" name="numbers" required><br><br>
+    <input type="submit" value="Submit">
 </form>
-<form action="/previous_trees" method="get">
-    <button type="submit">Show Previous Trees</button>
+<form>
+    <input type="button" value="Show Previous Trees" onclick="window.location.href='/prev_trees'">
 </form>
 </body>
 </html>

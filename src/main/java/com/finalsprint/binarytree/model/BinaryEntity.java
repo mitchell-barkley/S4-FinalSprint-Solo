@@ -43,4 +43,16 @@ public class BinaryEntity {
     public String toString() {
         return STR."BinaryEntity{id=\{id}, inputNumbers='\{inputNumbers}\{'\''}, treeJson='\{treeJson}\{'\''}\{'}'}";
     }
+
+    public void setTree(BinarySearchTree tree) {
+        this.treeJson = tree.toJson();
+    }
+
+    public BinarySearchTree getTree() {
+        return BinarySearchTree.fromJson(treeJson);
+    }
+
+    public void setTreeJson(BinarySearchTree tree) {
+        this.treeJson = tree.toJson();
+    }
 }

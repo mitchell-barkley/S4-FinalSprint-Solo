@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binary Search Tree Result</title>
 </head>
 <body>
-<h1>Binary Search Tree</h1>
-<pre>${tree}</pre>
+<div th:if="${tree} == null">
+    <h2>There are no numbers to create a binary search tree.</h2>
+</div>
+<div th:if="${tree} != null">
+    <h2>Binary Search Tree:</h2>
+<pre th:text="${tree.toString()}"></pre>
+</div>
+    <h2><a href="/enter_numbers">Click here to enter numbers.</a></h2>
 </body>
 </html>
