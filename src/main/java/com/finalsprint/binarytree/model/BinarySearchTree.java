@@ -10,10 +10,6 @@ public class BinarySearchTree {
         this.root = null;
     }
 
-    public static BinarySearchTree fromJson(String treeJson) {
-        return null;
-    }
-
     public void insert(int value) {
         root = insertRec(root, value);
     }
@@ -33,59 +29,62 @@ public class BinarySearchTree {
         return root;
     }
 
+    public List<Integer> inOrder() {
+        List<Integer> list = new ArrayList<>();
+        inOrderRec(root, list);
+        return list;
+    }
+
+    private void inOrderRec(Node root, List<Integer> list) {
+        if (root != null) {
+            inOrderRec(root.getLeft(), list);
+            list.add(root.getValue());
+            inOrderRec(root.getRight(), list);
+        }
+    }
+
+    public List<Integer> preOrder() {
+        List<Integer> list = new ArrayList<>();
+        preOrderRec(root, list);
+        return list;
+    }
+
+    private void preOrderRec(Node root, List<Integer> list) {
+        if (root != null) {
+            list.add(root.getValue());
+            preOrderRec(root.getLeft(), list);
+            preOrderRec(root.getRight(), list);
+        }
+    }
+
+    public List<Integer> postOrder() {
+        List<Integer> list = new ArrayList<>();
+        postOrderRec(root, list);
+        return list;
+    }
+
+    private void postOrderRec(Node root, List<Integer> list) {
+        if (root != null) {
+            postOrderRec(root.getLeft(), list);
+            postOrderRec(root.getRight(), list);
+            list.add(root.getValue());
+        }
+    }
+
     public Node getRoot() {
         return root;
     }
 
-    public void setRoot(Node root) {
-        this.root = root;
+    public String serializeToString() {
+        return serializeNode(root);
     }
 
-    public void balance() {
-        List<Integer> values = new ArrayList<>();
-        inOrderTraversal(root, values);
-        root = sortedArrayToBinaryTree(values, 0, values.size() - 1);
-    }
-
-    private void inOrderTraversal(Node node, List<Integer> values) {
-        if (node == null) {
-            return;
-        }
-
-        inOrderTraversal(node.getLeft(), values);
-        values.add(node.getValue());
-        inOrderTraversal(node.getRight(), values);
-    }
-
-    private Node sortedArrayToBinaryTree(List<Integer> values, int start, int end) {
-        if (start > end) {
-            return null;
-        }
-
-        int mid = (start + end) / 2;
-        Node node = new Node(values.get(mid));
-        node.setLeft(sortedArrayToBinaryTree(values, start, mid - 1));
-        node.setRight(sortedArrayToBinaryTree(values, mid + 1, end));
-
-        return node;
-    }
-
-    // Method to return JSON representation of the tree (simple representation)
-    public String toJson() {
-        return toJson(root);
-    }
-
-    private String toJson(Node node) {
+    private String serializeNode(Node node) {
         if (node == null) {
             return "null";
         }
-
-        return "{ \"value\": " + node.getValue() + ", \"left\": " + toJson(node.getLeft()) + ", \"right\": " + toJson(node.getRight()) + " }";
-    }
-
-    // toString
-    @Override
-    public String toString() {
-        return "BinarySearchTree{" + "root=" + root + '}';
+        return "{ \"value\": " + node.getValue() + ", " +
+                "\"left\": " + serializeNode(node.getLeft()) + ", " +
+                "\"right\": " + serializeNode(node.getRight()) + " }";
     }
 }

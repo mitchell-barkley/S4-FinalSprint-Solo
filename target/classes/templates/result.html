@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binary Search Tree Result</title>
+    <title>Results</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<div th:if="${tree} == null">
-    <h2>There are no numbers to create a binary search tree.</h2>
+<h1>Binary Tree Result</h1>
+<div id="tree-container">
+    <script type="application/json" id="tree-data">
+        ${treeJson}
+    </script>
 </div>
-<div th:if="${tree} != null">
-    <h2>Binary Search Tree:</h2>
-<pre th:text="${tree.toString()}"></pre>
-</div>
-    <h2><a href="/enter_numbers">Click here to enter numbers.</a></h2>
+<h2><a href="/create">Create Another Binary Tree</a></h2>
+<h2><a href="/">Home</a></h2>
+<h2><a href="/about">About</a></h2>
+<script src="/static/js/app.js"></script>
 </body>
 </html>

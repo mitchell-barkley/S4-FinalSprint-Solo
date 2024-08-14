@@ -1,6 +1,7 @@
 package com.finalsprint.binarytree.model;
 
 public class Node {
+
     private int value;
     private Node left;
     private Node right;
@@ -11,7 +12,6 @@ public class Node {
         this.right = null;
     }
 
-    // Getters and setters
     public int getValue() {
         return value;
     }
@@ -34,11 +34,5 @@ public class Node {
 
     public void setRight(Node right) {
         this.right = right;
-    }
-
-    // toString
-    @Override
-    public String toString() {
-        return STR."Node{value=\{value}, left=\{left}, right=\{right}\{'}'}";
     }
 }

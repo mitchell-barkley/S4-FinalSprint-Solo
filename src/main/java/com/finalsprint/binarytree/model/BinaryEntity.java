@@ -4,16 +4,24 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity
 public class BinaryEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String inputNumbers;
-    private String treeJson;
 
-    // Getters and setters
+    @Lob
+    private String treeStructure;
+
+    public BinaryEntity() {
+    }
+
+    public BinaryEntity(BinarySearchTree tree) {
+        this.treeStructure = tree.serializeToString();
+    }
+
     public Long getId() {
         return id;
     }
@@ -22,37 +30,15 @@ public class BinaryEntity {
         this.id = id;
     }
 
-    public String getInputNumbers() {
-        return inputNumbers;
+    public String getTreeStructure() {
+        return treeStructure;
     }
 
-    public void setInputNumbers(String inputNumbers) {
-        this.inputNumbers = inputNumbers;
-    }
-
-    public String getTreeJson() {
-        return treeJson;
-    }
-
-    public void setTreeJson(String treeJson) {
-        this.treeJson = treeJson;
-    }
-
-    // toString
-    @Override
-    public String toString() {
-        return STR."BinaryEntity{id=\{id}, inputNumbers='\{inputNumbers}\{'\''}, treeJson='\{treeJson}\{'\''}\{'}'}";
+    public void setTreeStructure(String treeStructure) {
+        this.treeStructure = treeStructure;
     }
 
     public void setTree(BinarySearchTree tree) {
-        this.treeJson = tree.toJson();
-    }
-
-    public BinarySearchTree getTree() {
-        return BinarySearchTree.fromJson(treeJson);
-    }
-
-    public void setTreeJson(BinarySearchTree tree) {
-        this.treeJson = tree.toJson();
+        this.treeStructure = tree.serializeToString();
     }
 }

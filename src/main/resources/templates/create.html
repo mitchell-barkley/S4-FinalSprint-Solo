@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Tree</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Enter Numbers to Create Binary Search Tree</h1>
+<form action="/process" method="post">
+    <label for="numbers">Enter numbers separated by commas:</label><br>
+    <input type="text" id="numbers" name="numbers" required><br><br>
+    <input type="submit" value="Submit">
+</form>
+<h2>Previous Trees</h2>
+<button type="button" id="prev" onclick="fetchBinaryTreeData()">Load Binary Tree</button>
+<div id="binaryTreeDisplay">
+</div>
+<hr>
+<h2><a href="/">Home</a></h2>
+<h2><a href="/about">About</a></h2>
+<script src="/js/app.js"></script>
+</body>
+</html>

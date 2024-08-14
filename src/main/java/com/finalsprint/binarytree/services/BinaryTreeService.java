@@ -1,49 +1,39 @@
 package com.finalsprint.binarytree.services;
 
 import com.finalsprint.binarytree.repository.Repo;
-import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.finalsprint.binarytree.model.BinarySearchTree;
 import com.finalsprint.binarytree.model.BinaryEntity;
+
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class BinaryTreeService {
 
-    @PostConstruct
-    public void init() {
-        System.out.println("Binary Tree Service Initialized");
-    }
-
-    private final Repo Repository;
-
     @Autowired
-    public BinaryTreeService(Repo Repository) {
-        this.Repository = Repository;
-    }
+    private Repo repo;
 
-    public static BinarySearchTree processNumbers(int[] numbers) {
+    public BinarySearchTree processInput(String inputNumbers) {
+        int[] numbers = Stream.of(inputNumbers.split(","))
+                .mapToInt(Integer::parseInt)
+                .toArray();
         BinarySearchTree tree = new BinarySearchTree();
         for (int number : numbers) {
             tree.insert(number);
         }
+        BinaryEntity entity = new BinaryEntity();
+        entity.setTree(tree);
+        repo.save(entity);
         return tree;
     }
 
-    public List<BinaryEntity> showPreviousTrees() {
-        return Repository.findAll();
+    public List<BinaryEntity> getAllTrees() {
+        return repo.findAll();
     }
 
-    public void showTree(Long id) {
-        Repository.findById(id);
-    }
-
-    public void saveTree(BinaryEntity entity) {
-        Repository.save(entity);
-    }
-
-    public static String prev_trees() {
-        return "prev_trees";
+    public BinaryEntity getTree(Long id) {
+        return repo.findById(id).get();
     }
 }
